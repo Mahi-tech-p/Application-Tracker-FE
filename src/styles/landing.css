@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.landing-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #f4f4f4;
+     */
+  /* background: linear-gradient(to left, rgb(119, 116, 116), rgb(68, 68, 70)); */
+  /* background: conic-gradient(circle, rgb(240, 7, 7), rgb(68, 68, 70));
+      */
+  /* background: conic-gradient(red, yellow, green, blue); */
+  /* background: linear-gradient(to right, #8e2de2, #4a00e0);
+      
+      */
+  /* background: linear-gradient(
+    45deg,
+    #f09433,
+    #e6683c,
+    #dc2743,
+    #cc2366,
+    #bc1888
+  ); */
+  background: linear-gradient(to right, #223352, #4274ae);
+}
+.landing-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 40px;
+  width: 400px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  color: rgb(225, 224, 222);
+}
+.landing-card h1 {
+  margin-bottom: 15px;
+  color: #f8f5f5;
+}
+.landing-card p {
+  margin-bottom: 25px;
+  color: #95b7d9;
+}
+.btn-grp {
+  display: flex;
+  justify-content: space-between;
+}
+.login-btn,
+.signup-btn {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  /* color: white; */
+
+  font-weight: 600;
+
+  transition: all 0.3s ease;
+  color: #223352;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.login-btn {
+  background: linear-gradient(to right, #4f8edc, #3567a5);
+}
+
+.signup-btn {
+  background: linear-gradient(to right, #5a9cf0, #4274ae);
+} 
+.login-btn:hover,
+.signup-btn:hover {
+  transform: translateY(-2px);
+  transition: 0.3s ease;
+}

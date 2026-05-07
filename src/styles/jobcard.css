@@ -1,0 +1,121 @@
+.job-card {
+  background: rgba(255, 255, 255, 0.9);
+
+  border-radius: 16px;
+
+  padding: 22px;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.3s ease;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow: 0 10px 25px rgba(34, 51, 82, 0.15);
+}
+
+.job-card h3 {
+  font-size: 22px;
+
+  color: #223352;
+
+  font-weight: 700;
+}
+
+.job-card p {
+  color: #5c6b80;
+
+  font-size: 16px;
+
+  font-weight: 500;
+}
+
+.job-status {
+  width: fit-content;
+
+  padding: 6px 14px;
+
+  border-radius: 20px;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  background: rgba(66, 116, 174, 0.12);
+
+  color: #3567a5;
+}
+
+/* =========================
+   Buttons Container
+========================= */
+
+.job-card-btns {
+  display: flex;
+
+  gap: 12px;
+
+  margin-top: 10px;
+}
+
+/* =========================
+   Common Button Styles
+========================= */
+
+.edit-btn,
+.delete-btn {
+  flex: 1;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: white;
+
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   Edit Button
+========================= */
+
+.edit-btn {
+  background: linear-gradient(to right, #4274ae, #223352);
+}
+
+.edit-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(34, 51, 82, 0.25);
+}
+
+/* =========================
+   Delete Button
+========================= */
+
+.delete-btn {
+  background: linear-gradient(to right, #e53935, #b71c1c);
+}
+
+.delete-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 6px 18px rgba(183, 28, 28, 0.25);
+}

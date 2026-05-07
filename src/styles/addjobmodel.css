@@ -1,0 +1,88 @@
+.add-job-container {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 20px;
+
+  margin-bottom: 25px;
+
+  border-radius: 18px;
+
+  background: rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+  flex-wrap: wrap;
+}
+
+.add-job-container input,
+.add-job-container select {
+  flex: 1;
+
+  min-width: 220px;
+
+  padding: 14px;
+
+  border: none;
+
+  outline: none;
+
+  border-radius: 10px;
+
+  font-size: 15px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  color: #223352;
+
+  transition: all 0.3s ease;
+}
+
+.add-job-container input::placeholder {
+  color: #6b7280;
+}
+
+.add-job-container input:focus,
+.add-job-container select:focus {
+  transform: scale(1.01);
+
+  box-shadow: 0 0 0 3px rgba(66, 116, 174, 0.2);
+}
+
+.add-job-container button {
+  padding: 14px 24px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  font-weight: 600;
+
+  color: white;
+
+  background: linear-gradient(to right, #4274ae, #223352);
+
+  transition: all 0.3s ease;
+
+  min-width: 140px;
+}
+
+.add-job-container button:hover {
+  transform: translateY(-2px);
+
+  background: linear-gradient(to right, #5a8ed1, #2f4f7f);
+
+  box-shadow: 0 8px 18px rgba(34, 51, 82, 0.25);
+}
