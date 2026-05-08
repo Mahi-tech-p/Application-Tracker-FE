@@ -3,8 +3,9 @@ import Layout from '../components/Layout'
 import JobColumn from '../components/JobCard/JobColumn';
 import '../styles/dashboard.css'
 import AddJobModal from '../components/AddJobModel';
-import { deleteJob, getJobs } from '../services/jobService';
+import { deleteJob, getJobs, updateJob } from '../services/jobService';
 import EditJobModel from '../components/JobCard/EditJobModel';
+import { DndContext } from '@dnd-kit/core';
 const Dashboard = () => {
   const [jobs, setJobs] = useState([])
   const [selectedJob, setSelectedJob] = useState(null)
@@ -42,6 +43,24 @@ const Dashboard = () => {
   const handleCloseModal = () => {
     setIsEditOpen(false)
   }
+  const handleDragEnd = async(event) => {
+    console.log(event);
+    const { active, over } = event
+    if (!over) return
+    const jobId = active.id
+    const newStatus = over.id
+    const updatedJobs = jobs.map((job) =>
+      job._id === jobId ? { ...job, status: newStatus } : job
+    );
+    setJobs(updatedJobs)
+    try {
+      await updateJob(jobId, {
+        status: newStatus
+      })
+    } catch (error) {
+      console.log(error.message)
+    }
+};
   return (
     <>
       {isEditOpen && selectedJob && <EditJobModel
@@ -55,33 +74,36 @@ const Dashboard = () => {
           jobs={jobs}
           setJobs={setJobs}
         />
-        <div className="dashboard-columns">
+        <DndContext onDragEnd={handleDragEnd}>
+          <div className="dashboard-columns">
 
-          <JobColumn
-            title="Applied"
-            jobs={jobs.filter((job) => job.status === "Applied")}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
+            <JobColumn
+              title="Applied"
+              jobs={jobs.filter((job) => job.status === "Applied")}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
 
-          />
+            />
 
-          <JobColumn
-            title="Interview"
-            jobs={jobs.filter((job) => job.status === "Interview")}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
+            <JobColumn
+              title="Interview"
+              jobs={jobs.filter((job) => job.status === "Interview")}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
 
-          />
+            />
 
-          <JobColumn
-            title="Offer"
-            jobs={jobs.filter((job) => job.status === "Offer")}
-            handleDelete={handleDelete}
-            handleEdit={handleEdit}
+            <JobColumn
+              title="Offer"
+              jobs={jobs.filter((job) => job.status === "Offer")}
+              handleDelete={handleDelete}
+              handleEdit={handleEdit}
 
-          />
+            />
 
-        </div>
+          </div>
+        </DndContext>
+
       </Layout>
     </>
   )
