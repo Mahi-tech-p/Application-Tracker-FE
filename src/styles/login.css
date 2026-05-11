@@ -99,3 +99,12 @@
 
   background: linear-gradient(to right, #6ba7f5, #4274ae);
 }
+.login-card p{
+  text-align: center;
+  margin-top: 12px;
+  color: #d5dce6;
+}
+.login-card p span {
+  color: #b4c8e0;
+  cursor: pointer;
+}

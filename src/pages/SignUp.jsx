@@ -34,6 +34,7 @@ const SignUp = () => {
         <input type="email" name='email' placeholder='Enter your email...' onChange={handleChange} />
         <input type="text" name='password' placeholder='Enter your password..' onChange={handleChange} />
         <button onClick={handleSignUp}>Sign Up</button>
+        <p>Already have an account? <span onClick={() => navigate('/login')}>Login</span></p>
       </div>
     </div>
   )

@@ -1,24 +1,47 @@
 import { useDraggable } from "@dnd-kit/core";
 import "../../styles/jobcard.css";
 
-const JobCard = ({ job, handleDelete, handleEdit }) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id: job._id })
+const JobCard = ({
+  job,
+  handleDelete,
+  handleEdit,
+}) => {
 
-  const style = transform ? {
-    transform: `translate3d(
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+  } = useDraggable({
+    id: job._id,
+  });
+
+  const style = transform
+    ? {
+        transform: `translate3d(
           ${transform.x}px,
           ${transform.y}px,
           0
         )`,
-  }
+      }
     : undefined;
+
   return (
-    <div ref={setNodeRef}
+
+    <div
+      ref={setNodeRef}
       style={style}
-      {...listeners}
-      {...attributes}
       className="job-card"
     >
+
+      {/* Drag Handle */}
+      <div
+        className="drag-handle"
+        {...listeners}
+        {...attributes}
+      >
+        ☰ Drag
+      </div>
 
       <h3>{job.company}</h3>
 

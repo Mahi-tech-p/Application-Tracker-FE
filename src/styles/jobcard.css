@@ -1,13 +1,11 @@
 .job-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
 
   border-radius: 16px;
 
-  padding: 22px;
+  padding: 20px;
 
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-
-  transition: all 0.3s ease;
 
   border: 1px solid rgba(255, 255, 255, 0.2);
 
@@ -15,13 +13,57 @@
   flex-direction: column;
 
   gap: 14px;
+
+  transition: all 0.25s ease;
+
+  cursor: grab;
 }
 
 .job-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
 
-  box-shadow: 0 10px 25px rgba(34, 51, 82, 0.15);
+  box-shadow: 0 12px 24px rgba(34, 51, 82, 0.15);
 }
+
+/* =========================
+   Drag Handle
+========================= */
+
+.drag-handle {
+  width: fit-content;
+
+  padding: 6px 12px;
+
+  border-radius: 8px;
+
+  background: rgba(66, 116, 174, 0.12);
+
+  color: #3567a5;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: grab;
+
+  user-select: none;
+
+  transition: all 0.3s ease;
+}
+
+.drag-handle:hover {
+  background: rgba(66, 116, 174, 0.2);
+}
+
+/* While Dragging */
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+/* =========================
+   Company Name
+========================= */
 
 .job-card h3 {
   font-size: 22px;
@@ -31,6 +73,10 @@
   font-weight: 700;
 }
 
+/* =========================
+   Role
+========================= */
+
 .job-card p {
   color: #5c6b80;
 
@@ -39,6 +85,10 @@
   font-weight: 500;
 }
 
+/* =========================
+   Status Badge
+========================= */
+
 .job-status {
   width: fit-content;
 
@@ -46,17 +96,17 @@
 
   border-radius: 20px;
 
-  font-size: 14px;
-
-  font-weight: 600;
-
   background: rgba(66, 116, 174, 0.12);
 
   color: #3567a5;
+
+  font-size: 14px;
+
+  font-weight: 600;
 }
 
 /* =========================
-   Buttons Container
+   Buttons
 ========================= */
 
 .job-card-btns {
@@ -66,10 +116,6 @@
 
   margin-top: 10px;
 }
-
-/* =========================
-   Common Button Styles
-========================= */
 
 .edit-btn,
 .delete-btn {
@@ -83,18 +129,16 @@
 
   cursor: pointer;
 
+  color: white;
+
   font-size: 14px;
 
   font-weight: 600;
 
-  color: white;
-
   transition: all 0.3s ease;
 }
 
-/* =========================
-   Edit Button
-========================= */
+/* Edit */
 
 .edit-btn {
   background: linear-gradient(to right, #4274ae, #223352);
@@ -106,9 +150,7 @@
   box-shadow: 0 6px 18px rgba(34, 51, 82, 0.25);
 }
 
-/* =========================
-   Delete Button
-========================= */
+/* Delete */
 
 .delete-btn {
   background: linear-gradient(to right, #e53935, #b71c1c);
@@ -118,4 +160,7 @@
   transform: translateY(-2px);
 
   box-shadow: 0 6px 18px rgba(183, 28, 28, 0.25);
+}
+.job-card:active {
+  opacity: 0.8;
 }

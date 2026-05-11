@@ -107,3 +107,12 @@
 
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
+.signup-card p{
+  text-align: center;
+  margin-top: 12px;
+  color: #d5dce6;
+}
+.signup-card p span {
+  color: #b4c8e0;
+  cursor: pointer;
+}

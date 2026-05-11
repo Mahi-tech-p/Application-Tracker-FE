@@ -1,8 +1,18 @@
 import { useState } from "react";
+
 import "../styles/addjobmodel.css";
+
 import { addJob } from "../services/jobService";
 
-const AddJobModal = ({ setJobs }) => {
+import { useDispatch } from "react-redux";
+
+import {
+  addJobRedux,
+} from "../redux/job/jobSlice";
+
+const AddJobModal = () => {
+
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
     company: "",
@@ -11,6 +21,7 @@ const AddJobModal = ({ setJobs }) => {
   });
 
   const handleChange = (e) => {
+
     setFormData((prev) => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -18,19 +29,17 @@ const AddJobModal = ({ setJobs }) => {
   };
 
   const handleAddJob = async () => {
+
     try {
 
       const res = await addJob(formData);
 
       console.log(res.data);
 
-      // Add new job instantly to UI
-      setJobs((prevJobs) => [
-        ...prevJobs,
-        res.data,
-      ]);
+      // Redux Update
+      dispatch(addJobRedux(res.data));
 
-      // Clear form
+      // Clear Form
       setFormData({
         company: "",
         role: "",
@@ -38,11 +47,14 @@ const AddJobModal = ({ setJobs }) => {
       });
 
     } catch (error) {
+
       console.log(error);
+
     }
   };
 
   return (
+
     <div className="add-job-container">
 
       <input
@@ -67,7 +79,9 @@ const AddJobModal = ({ setJobs }) => {
         onChange={handleChange}
       >
         <option value="Applied">Applied</option>
+
         <option value="Interview">Interview</option>
+
         <option value="Offer">Offer</option>
       </select>
 
