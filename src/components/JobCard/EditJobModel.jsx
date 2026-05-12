@@ -10,6 +10,7 @@ import {
   updateJobRedux,
   updateJobThunk,
 } from '../../redux/job/jobSlice';
+import toast from 'react-hot-toast';
 
 const EditJobModel = ({
   selectedJob,
@@ -49,7 +50,8 @@ const EditJobModel = ({
           formData,
         })
       );
-
+      toast.success("Job updated successfully")
+      // Close Modal
       closeModal();
 
     } catch (error) {

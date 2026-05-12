@@ -10,6 +10,7 @@ import {
   addJobRedux,
   addJobThunk,
 } from "../redux/job/jobSlice";
+import toast from "react-hot-toast";
 
 const AddJobModal = () => {
 
@@ -39,7 +40,7 @@ const AddJobModal = () => {
 
       // Redux Update
       dispatch(addJobThunk(formData));
-
+      toast.success("Job added successfully")
       // Clear Form
       setFormData({
         company: "",

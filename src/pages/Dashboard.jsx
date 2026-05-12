@@ -19,6 +19,7 @@ import {
   fetchJobs,
   updateJobThunk,
 } from '../redux/job/jobSlice';
+import toast from 'react-hot-toast';
 
 const Dashboard = () => {
 
@@ -62,6 +63,7 @@ const Dashboard = () => {
   const handleDelete = async (id) => {
 
     dispatch(deleteJobThunk(id))
+    toast.success("Job deleted successfully")
     // try {
 
     //   // await deleteJob(id);
@@ -115,6 +117,7 @@ const Dashboard = () => {
         status: newStatus
       }
     }))
+    toast.success("Job status updated successfully")
 
     // try {
 

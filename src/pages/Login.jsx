@@ -4,6 +4,7 @@ import { loginUser } from '../services/authService'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginThunk } from '../redux/auth/authSlice'
+import toast from 'react-hot-toast'
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -27,11 +28,13 @@ const Login = () => {
       // const res = await loginUser(formData);
       // localStorage.setItem("token", res.data.token)
       // alert("login Successful")
-     await dispatch(loginThunk(formData)).unwrap()
+      await dispatch(loginThunk(formData)).unwrap()
+      toast.success("Login Successful")
       navigate('/dashboard')
     } catch (error) {
       console.log(error.response.data)
-      alert("login Failed")
+      // alert("login Failed")
+      toast.error(error.message || "Login failed")
 
     }
   }
