@@ -2,25 +2,32 @@ import React, { useState } from 'react'
 import "../styles/login.css"
 import { loginUser } from '../services/authService'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginThunk } from '../redux/auth/authSlice'
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password:""
+    password: ""
   })
+  const { loading, error } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleOnChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name] :e.target.value}
+      [e.target.name]: e.target.value
+    }
     )
-    
+
   }
-  const handleLogin = async() => {
+  const handleLogin = async () => {
+
     try {
-      const res = await loginUser(formData);
-      localStorage.setItem("token", res.data.token)
-      alert("login Successful")
+      // const res = await loginUser(formData);
+      // localStorage.setItem("token", res.data.token)
+      // alert("login Successful")
+     await dispatch(loginThunk(formData)).unwrap()
       navigate('/dashboard')
     } catch (error) {
       console.log(error.response.data)
