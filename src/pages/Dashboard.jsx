@@ -6,11 +6,6 @@ import '../styles/dashboard.css';
 import AddJobModal from '../components/AddJobModel';
 import EditJobModel from '../components/JobCard/EditJobModel';
 
-import {
-  deleteJob,
-  getJobs,
-  updateJob,
-} from '../services/jobService';
 
 import { DndContext } from '@dnd-kit/core';
 
@@ -20,59 +15,65 @@ import {
 } from 'react-redux';
 
 import {
-  removeJobRedux,
-  setJobs,
-  updateJobRedux,
+  deleteJobThunk,
+  fetchJobs,
+  updateJobThunk,
 } from '../redux/job/jobSlice';
 
 const Dashboard = () => {
 
   const dispatch = useDispatch();
 
-  const jobs = useSelector(
-    (state) => state.jobs.jobs
-  );
-
+  // const jobs = useSelector(
+  //   (state) => state.jobs.jobs
+  // );
+  const { jobs, loading, error } = useSelector((state) => state.jobs)
   const [selectedJob, setSelectedJob] = useState(null);
 
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   // Fetch Jobs
+  // useEffect(() => {
+
+  //   const loadJobs = async () => {
+
+  //     try {
+
+  //       // const res = await getJobs();
+
+  //       dispatch(fetchJobs());
+
+  //     } catch (error) {
+
+  //       console.log(error);
+
+  //     }
+  //   };
+
+  //   loadJobs();
+
+  // }, [dispatch]);
+
   useEffect(() => {
-
-    const loadJobs = async () => {
-
-      try {
-
-        const res = await getJobs();
-
-        dispatch(setJobs(res.data));
-
-      } catch (error) {
-
-        console.log(error);
-
-      }
-    };
-
-    loadJobs();
-
-  }, [dispatch]);
+    dispatch(fetchJobs())
+  },[dispatch])
 
   // Delete Job
   const handleDelete = async (id) => {
 
-    try {
+    dispatch(deleteJobThunk(id))
+    // try {
 
-      await deleteJob(id);
+    //   // await deleteJob(id);
 
-      dispatch(removeJobRedux(id));
+    //   // dispatch(removeJobRedux(id));
+    //   dispatch(deleteJobThunk(id))
 
-    } catch (error) {
+    // } catch (error) {
 
-      console.log(error);
+    //   console.log(error);
 
-    }
+    // }
   };
 
   // Open Edit Modal
@@ -103,33 +104,37 @@ const Dashboard = () => {
     const newStatus = over.id;
 
     // Find dragged job
-    const draggedJob = jobs.find(
-      (job) => job._id === jobId
-    );
-
-    if (!draggedJob) return;
 
     // Updated job object
-    const updatedJob = {
-      ...draggedJob,
-      status: newStatus,
-    };
 
     // Optimistic UI update
-    dispatch(updateJobRedux(updatedJob));
+    // dispatch(updateJobRedux(updatedJob));
+    dispatch(updateJobThunk({
+      id: jobId,
+      formData: {
+        status: newStatus
+      }
+    }))
 
-    try {
+    // try {
 
-      await updateJob(jobId, {
-        status: newStatus,
-      });
+    //   await updateJob(jobId, {
+    //     status: newStatus,
+    //   });
 
-    } catch (error) {
+    // } catch (error) {
 
-      console.log(error.message);
+    //   console.log(error.message);
 
-    }
+    // }
   };
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>{error}</h2>;
+  }
 
   return (
     <>

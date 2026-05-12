@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 
 import {
   addJobRedux,
+  addJobThunk,
 } from "../redux/job/jobSlice";
 
 const AddJobModal = () => {
@@ -32,12 +33,12 @@ const AddJobModal = () => {
 
     try {
 
-      const res = await addJob(formData);
+      // const res = await addJob(formData);
 
-      console.log(res.data);
+      // console.log(res.data);
 
       // Redux Update
-      dispatch(addJobRedux(res.data));
+      dispatch(addJobThunk(formData));
 
       // Clear Form
       setFormData({

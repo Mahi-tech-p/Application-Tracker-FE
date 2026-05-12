@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import {
   updateJobRedux,
+  updateJobThunk,
 } from '../../redux/job/jobSlice';
 
 const EditJobModel = ({
@@ -35,13 +36,19 @@ const EditJobModel = ({
 
     try {
 
-      const res = await updateJob(
-        selectedJob._id,
-        formData
-      );
+      // const res = await updateJob(
+      //   selectedJob._id,
+      //   formData
+      // );
 
       // Redux Update
-      dispatch(updateJobRedux(res.data));
+      // dispatch(updateJobRedux(res.data));
+      dispatch(
+        updateJobThunk({
+          id: selectedJob._id,
+          formData,
+        })
+      );
 
       closeModal();
 
